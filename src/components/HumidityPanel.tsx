@@ -3,9 +3,9 @@ import { WeatherData } from "./WeatherData";
 
 const HumidityPanel = ({ data }: { data: WeatherData }): JSX.Element => {
 	return (
-		<div className="p-4 bg-blue-100 rounded-lg shadow-md">
-			<h2 className="text-xl font-bold">Umidade</h2>
-			<p className="text-2xl font-semibold">
+		<div>
+			<h2 className="text-xs font-bold">Umidade</h2>
+			<p className="text-sm font-semibold">
 				{data.main?.humidity
 					? `${data.main.humidity}%`
 					: "Não foi possível obter os dados de umidade!"}

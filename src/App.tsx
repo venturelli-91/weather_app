@@ -27,18 +27,18 @@ const App = () => {
 	};
 
 	return (
-		<main>
-			<div>
+		<main className="w-96 h-72 bg-slate-400 flex flex-col justify-between items-center absolute top-1/3 left-1/3 rounded-full p-6">
+			<div className="w-full flex flex-col items-center">
 				<h1 className="font-black">Cidade</h1>
 				<p>Confira como está o clima na sua cidade!</p>
 				<input
 					type="text"
-					className="rounded-3xl w-40 h-10 font-thin m-4 p-4 bg-gray-200"
+					className="rounded-3xl w-40 h-10 font-thin mt-2 p-4 bg-gray-200 text-center"
 					placeholder="Digite o local aqui..."
 					onChange={(e) => setLocation(e.target.value)}
 				/>
 				<button
-					className="rounded-3xl bg-green-500 w-20 font-bold h-10 text-sm text-white"
+					className="rounded-3xl bg-green-500 w-20 font-bold h-10 text-sm text-white mt-2"
 					onClick={searchLocation}>
 					Buscar
 				</button>
@@ -50,13 +50,13 @@ const App = () => {
 					: `Não foi possível obter os dados da cidade!`}
 			</h2>
 
-			<h1></h1>
+			<div className="flex flex-row gap-2 items-center">
+				<div>{data && <TemperaturePanel data={data} />}</div>
 
-			<div>{data && <TemperaturePanel data={data} />}</div>
+				<div>{data && <WindPanel data={data} />}</div>
 
-			<div>{data && <WindPanel data={data} />}</div>
-
-			<div>{data && <HumidityPanel data={data} />}</div>
+				<div>{data && <HumidityPanel data={data} />}</div>
+			</div>
 		</main>
 	);
 };

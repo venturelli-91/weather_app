@@ -3,9 +3,9 @@ import { WeatherData } from "./WeatherData";
 
 const TemperaturePanel = ({ data }: { data: WeatherData }): JSX.Element => {
 	return (
-		<div className="p-4 bg-blue-100 rounded-lg shadow-md">
-			<h2 className="text-xl font-bold">Temperatura local:</h2>
-			<p className="text-2xl font-semibold">
+		<div>
+			<h2 className="text-xs font-bold">Temperatura local:</h2>
+			<p className="text-sm font-semibold">
 				{data.main?.temp
 					? `${data.main.temp} C`
 					: "Não foi possível obter os dados de temperatura!"}
