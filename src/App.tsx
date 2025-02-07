@@ -37,7 +37,7 @@ const App = () => {
 
 	return (
 		<main className="container">
-			<div className="w-full flex flex-col items-center">
+			<div className="w-full flex flex-col items-center sm:grid-cols-2">
 				<h1 className="font-black text-xl m-5">Weather App</h1>
 				<p className="text-sm">Confira como está o clima na sua cidade!</p>
 				<input
