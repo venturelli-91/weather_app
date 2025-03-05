@@ -17,7 +17,7 @@ const Footer = () => {
 				style={{
 					display: "flex",
 					flexDirection: "column",
-					minHeight: "100vh",
+					minHeight: "20vh",
 				}}>
 				<FlowbiteFooter
 					container
