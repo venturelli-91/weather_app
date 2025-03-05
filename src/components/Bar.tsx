@@ -29,9 +29,9 @@ const Bar = () => {
 
 	return (
 		<>
-			<div className="fixed top-0 left-0 right-0 flex justify-between p-4 bg-gray-800">
+			<div className="fixed top-0 left-0 right-0 flex justify-between p-4 dark:bg-gray-800">
 				<GiHamburgerMenu
-					className="text-2xl text-white dark:text-slate-300 cursor-pointer"
+					className="text-2xl text-black dark:text-slate-300 cursor-pointer pb-2"
 					onClick={handleOpen}
 				/>
 			</div>

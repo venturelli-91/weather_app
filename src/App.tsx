@@ -4,6 +4,7 @@ import WindPanel from "./components/WindPanel";
 import HumidityPanel from "./components/HumidityPanel";
 import TemperaturePanel from "./components/TemperaturePanel";
 import { WeatherData } from "./components/WeatherData";
+import { Card } from "flowbite-react";
 
 const App = () => {
 	const [data, setData] = useState<WeatherData | null>(null);
@@ -36,42 +37,44 @@ const App = () => {
 	//usar async/await é mais moderno hoje.
 
 	return (
-		<main className="container dark:bg-black">
-			<div className="w-full flex flex-col items-center sm:grid-cols-2">
-				<h1 className="font-black text-xl p-5">Weather App</h1>
-				<p className="text-sm font-bold">
-					Confira como está o clima na sua cidade!
-				</p>
-				<input
-					type="text"
-					className="input"
-					value={location}
-					placeholder="Digite o local aqui..."
-					onChange={(e) => setLocation(e.target.value)}
-				/>
-				<button
-					className="button"
-					onClick={searchLocation}>
-					Buscar
-				</button>
-				{loading && <p className="text-sm font-bold text-gray-800"></p>}
-			</div>
-			<h2 className="font-extrabold text-3xl m-5">
-				{loading
-					? "Carregando"
-					: data?.name
-					? data.name
-					: "Cidade não encontrada!"}
-			</h2>
-			<div className="panels">
-				<div className="text-center">
-					{data && <TemperaturePanel data={data} />}
+		<main className="card">
+			<Card>
+				<div className="w-full flex flex-col items-center sm:grid-cols-2">
+					<h1 className="font-black text-xl p-5">Weather App</h1>
+					<p className="text-sm font-bold">
+						Confira como está o clima na sua cidade!
+					</p>
+					<input
+						type="text"
+						className="input"
+						value={location}
+						placeholder="Digite o local aqui..."
+						onChange={(e) => setLocation(e.target.value)}
+					/>
+					<button
+						className="button"
+						onClick={searchLocation}>
+						Buscar
+					</button>
+					{loading && <p className="text-sm font-bold text-gray-800"></p>}
 				</div>
-				<div className="text-center">{data && <WindPanel data={data} />}</div>
-				<div className="text-center">
-					{data && <HumidityPanel data={data} />}
+				<h2 className="panels font-extrabold text-3xl pt-5">
+					{loading
+						? "Carregando"
+						: data?.name
+						? data.name
+						: "Cidade não encontrada!"}
+				</h2>
+				<div className="panels">
+					<div className="text-center">
+						{data && <TemperaturePanel data={data} />}
+					</div>
+					<div className="text-center">{data && <WindPanel data={data} />}</div>
+					<div className="text-center">
+						{data && <HumidityPanel data={data} />}
+					</div>
 				</div>
-			</div>
+			</Card>
 		</main>
 	);
 };

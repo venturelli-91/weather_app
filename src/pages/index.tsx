@@ -10,17 +10,15 @@ import IntroductionCard from "@/components/IntroductionCard";
 export default function Home() {
 	return (
 		<React.StrictMode>
-			<App />
 			<IntroductionCard
-				title="🌙 NoctisWeather: Monitoramento do Clima no Modo Noturno"
-				description="O clima em tempo real, no escuro e com estilo. 
-            Previsões precisas, sem ofuscar sua visão. 
-            Seu guia meteorológico, sempre no modo noturno."
+				title="🌙 NocWeather: Monitoramento do Clima"
+				description="NocWeather – Beleza e precisão em qualquer tempo."
 			/>
-			<Datepicker />
+			<Datepicker className="w-52 mt-6" />
 			<DarkThemeToggle />
-			<Footer />
+			<App />
 			<Bar />
+			<Footer />
 		</React.StrictMode>
 	);
 }
