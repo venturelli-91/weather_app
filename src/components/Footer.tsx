@@ -4,39 +4,61 @@ import { BsLinkedin, BsGithub } from "react-icons/bs";
 
 const Footer = () => {
 	const handleLinkedinClick = () => {
-		window.location.href = "https://www.linkedin.com/in/aurelioventurelli/";
+		window.open("https://www.linkedin.com/in/aurelioventurelli/", "_blank");
 	};
 
 	const handleGithubClick = () => {
-		window.location.href = "https://github.com/venturelli-91";
+		window.open("https://github.com/venturelli-91", "_blank");
 	};
 
 	return (
 		<>
-			<FlowbiteFooter container>
-				<FlowbiteFooter.Copyright
-					href="#"
-					by="Flowbite"
-					year={2025}
-					className="font-bold"
-				/>
-				<FlowbiteFooter.LinkGroup>
-					<FlowbiteFooter.Link href="#">About</FlowbiteFooter.Link>
-					<FlowbiteFooter.Link href="#">Privacy Policy</FlowbiteFooter.Link>
-					<FlowbiteFooter.Link href="#">Licensing</FlowbiteFooter.Link>
-					<FlowbiteFooter.Link href="#">Contact</FlowbiteFooter.Link>
-					<div className="flex gap-4">
-						<BsLinkedin
-							size={30}
-							onClick={handleLinkedinClick}
-						/>
-						<BsGithub
-							size={30}
-							onClick={handleGithubClick}
-						/>
-					</div>
-				</FlowbiteFooter.LinkGroup>
-			</FlowbiteFooter>
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					minHeight: "100vh",
+				}}>
+				<FlowbiteFooter
+					container
+					style={{ marginTop: "auto" }}>
+					<FlowbiteFooter.Copyright
+						href="#"
+						by="Flowbite"
+						year={2025}
+						className="font-bold"
+					/>
+					<FlowbiteFooter.LinkGroup>
+						<FlowbiteFooter.Link
+							href="#"
+							className="mr-4 mt-2 font-bold">
+							About me
+						</FlowbiteFooter.Link>
+						<FlowbiteFooter.Link
+							href="#"
+							className="mr-4 mt-2 font-bold">
+							Projects
+						</FlowbiteFooter.Link>
+						<FlowbiteFooter.Link
+							href="#"
+							className="mr-4 mt-2 font-bold">
+							Contact
+						</FlowbiteFooter.Link>
+						<div className="flex gap-4">
+							<BsLinkedin
+								size={30}
+								onClick={handleLinkedinClick}
+								className="cursor-pointer"
+							/>
+							<BsGithub
+								size={30}
+								onClick={handleGithubClick}
+								className="cursor-pointer"
+							/>
+						</div>
+					</FlowbiteFooter.LinkGroup>
+				</FlowbiteFooter>
+			</div>
 		</>
 	);
 };

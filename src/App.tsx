@@ -36,10 +36,12 @@ const App = () => {
 	//usar async/await é mais moderno hoje.
 
 	return (
-		<main className="container">
+		<main className="container dark:bg-black">
 			<div className="w-full flex flex-col items-center sm:grid-cols-2">
 				<h1 className="font-black text-xl m-5">Weather App</h1>
-				<p className="text-sm">Confira como está o clima na sua cidade!</p>
+				<p className="text-sm font-bold">
+					Confira como está o clima na sua cidade!
+				</p>
 				<input
 					type="text"
 					className="input"
@@ -54,15 +56,13 @@ const App = () => {
 				</button>
 				{loading && <p className="text-sm font-bold text-gray-800"></p>}
 			</div>
-
-			<h2 className="font-extrabold text-3xl m-5 text-blue-800">
+			<h2 className="font-extrabold text-3xl m-5">
 				{loading
 					? "Carregando"
 					: data?.name
 					? data.name
 					: "Cidade não encontrada!"}
 			</h2>
-
 			<div className="panels">
 				<div className="text-center">
 					{data && <TemperaturePanel data={data} />}

@@ -2,14 +2,18 @@
 import React from "react";
 import "@/pages/_app";
 import App from "@/App";
-import Background from "@/components/Background";
+import { DarkThemeToggle } from "flowbite-react";
 import Footer from "@/components/Footer";
+import { Datepicker } from "flowbite-react";
+import Bar from "@/components/Bar";
 export default function Home() {
 	return (
 		<React.StrictMode>
-			<Background></Background>
-			<App></App>
-			<Footer></Footer>
+			<DarkThemeToggle />
+			<App />
+			<Footer />
+			<Datepicker />
+			<Bar />
 		</React.StrictMode>
 	);
 }
