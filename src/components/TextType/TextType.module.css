@@ -1,0 +1,29 @@
+.textType {
+	display: inline-block;
+	position: relative;
+}
+
+.textTypeContent {
+	display: inline;
+}
+
+.textTypeCursor {
+	display: inline-block;
+	font-weight: normal;
+	animation: blink 1s infinite;
+}
+
+.textTypeCursorHidden {
+	opacity: 0 !important;
+}
+
+@keyframes blink {
+	0%,
+	50% {
+		opacity: 1;
+	}
+	51%,
+	100% {
+		opacity: 0;
+	}
+}

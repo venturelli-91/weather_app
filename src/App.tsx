@@ -5,6 +5,8 @@ import HumidityPanel from "./components/HumidityPanel";
 import TemperaturePanel from "./components/TemperaturePanel";
 import { WeatherData } from "./components/WeatherData";
 import { Card } from "flowbite-react";
+import ShinyButton from "./components/ShinyButton/ShinyButton";
+import TextType from "./components/TextType";
 
 const App = () => {
 	const [data, setData] = useState<WeatherData | null>(null);
@@ -34,16 +36,31 @@ const App = () => {
 			setLocation("");
 		}
 	};
-	//usar async/await é mais moderno hoje.
 
 	return (
 		<main className="card">
 			<Card>
 				<div className="w-full flex flex-col items-center sm:grid-cols-2">
-					<h1 className="font-black text-xl p-5">Weather App</h1>
-					<p className="text-sm font-bold">
-						Confira como está o clima na sua cidade!
-					</p>
+					<TextType
+						text={["Weather App", "Previsão do Tempo", "Clima Atual"]}
+						as="h1"
+						className="font-black text-xl p-5"
+						textColors={["#22c55e", "#3b82f6", "#f59e0b"]}
+						typingSpeed={100}
+						pauseDuration={2000}
+						loop={true}
+						showCursor={true}
+						cursorCharacter="|"
+					/>
+					<TextType
+						text="Confira como está o clima na sua cidade!"
+						as="p"
+						className="text-sm font-bold"
+						typingSpeed={60}
+						initialDelay={3000}
+						loop={false}
+						showCursor={false}
+					/>
 					<input
 						type="text"
 						className="input"
@@ -51,11 +68,7 @@ const App = () => {
 						placeholder="Digite o local aqui..."
 						onChange={(e) => setLocation(e.target.value)}
 					/>
-					<button
-						className="button"
-						onClick={searchLocation}>
-						Buscar
-					</button>
+					<ShinyButton onClick={searchLocation}>Buscar</ShinyButton>
 					{loading && <p className="text-sm font-bold text-gray-800"></p>}
 				</div>
 				<h2 className="panels font-extrabold text-3xl pt-5">
