@@ -3,38 +3,19 @@ import "@/pages/_app";
 import WindPanel from "./components/Display/WindPanel";
 import HumidityPanel from "./components/Display/HumidityPanel";
 import TemperaturePanel from "./components/Display/TemperaturePanel";
-import { WeatherData } from "./components/Display/WeatherData";
 import { Card } from "flowbite-react";
 import ShinyButton from "./components/ShinyButton/ShinyButton";
 import TextType from "./components/TextType/TextType";
+import { useWeather } from "./hooks/useWeather";
 
 const App = () => {
-	const [data, setData] = useState<WeatherData | null>(null);
 	const [location, setLocation] = useState("");
-	const [loading, setLoading] = useState(false);
-	const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-	const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric&lang=pt`;
+	const { data, loading, error, searchWeather } = useWeather();
 
-	const searchLocation = async () => {
-		if (!location) return;
-		setLoading(true);
-
-		try {
-			setData(null);
-
-			const response = await fetch(url);
-			if (!response.ok) {
-				throw new Error("Erro ao buscar dados!");
-			}
-
-			const result = await response.json();
-			setData(result);
-		} catch (error) {
-			console.log("A solicitação não foi executada corretamente", error);
-		} finally {
-			setLoading(false);
-			setLocation("");
-		}
+	const handleSearch = async () => {
+		if (!location.trim()) return;
+		await searchWeather(location);
+		setLocation("");
 	};
 
 	return (
@@ -68,15 +49,29 @@ const App = () => {
 						placeholder="Digite o local aqui..."
 						onChange={(e) => setLocation(e.target.value)}
 					/>
-					<ShinyButton onClick={searchLocation}>Buscar</ShinyButton>
-					{loading && <p className="text-sm font-bold text-gray-800"></p>}
+					<ShinyButton onClick={handleSearch}>Buscar</ShinyButton>
+					{loading && (
+						<div className="flex items-center space-x-2 mt-2">
+							<div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+							<span className="text-sm font-bold text-gray-600">
+								Carregando...
+							</span>
+						</div>
+					)}
+					{error && (
+						<div className="mt-2 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
+							{error}
+						</div>
+					)}
 				</div>
 				<h2 className="panels font-extrabold text-3xl pt-5">
 					{loading
 						? "Carregando"
+						: error
+						? "Erro na busca"
 						: data?.name
 						? data.name
-						: "Cidade não encontrada!"}
+						: "Digite uma cidade para começar"}
 				</h2>
 				<div className="panels">
 					<div className="text-center">

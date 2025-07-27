@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "../../App";
+import { useWeatherStore } from "../../store/weatherStore";
 
 // Mock GSAP
 jest.mock("gsap", () => ({
@@ -20,6 +21,12 @@ process.env.NEXT_PUBLIC_WEATHER_API_KEY = "test-api-key";
 describe("App Integration Test", () => {
 	beforeEach(() => {
 		(fetch as jest.Mock).mockClear();
+		// Reset Zustand store before each test
+		useWeatherStore.setState({
+			data: null,
+			loading: false,
+			error: null,
+		});
 	});
 
 	it("renders all main components", () => {
@@ -107,12 +114,32 @@ describe("App Integration Test", () => {
 		});
 	});
 
-	it("shows error message when city is not found", async () => {
+	it("shows error message when API fails", async () => {
+		(fetch as jest.Mock).mockRejectedValueOnce(new Error("API Error"));
+
+		render(<App />);
+
+		const input = screen.getByPlaceholderText("Digite o local aqui...");
+		const searchButton = screen.getByText("Buscar");
+
+		fireEvent.change(input, { target: { value: "Invalid City" } });
+		fireEvent.click(searchButton);
+
+		await waitFor(() => {
+			expect(
+				screen.getByText("Cidade não encontrada ou erro na conexão")
+			).toBeInTheDocument();
+		});
+	});
+
+	it("shows initial state correctly", async () => {
 		render(<App />);
 
 		// Aguarda um pouco para garantir que o estado inicial seja renderizado
 		await waitFor(() => {
-			expect(screen.getByText("Cidade não encontrada!")).toBeInTheDocument();
+			expect(
+				screen.getByText("Digite uma cidade para começar")
+			).toBeInTheDocument();
 		});
 	});
 });
