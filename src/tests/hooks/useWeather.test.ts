@@ -2,16 +2,13 @@ import { renderHook, act, waitFor } from "@testing-library/react";
 import { useWeather } from "../../hooks/useWeather";
 import { useWeatherStore } from "../../store/weatherStore";
 
-// Mock fetch
 global.fetch = jest.fn();
 
-// Mock environment variable
 process.env.NEXT_PUBLIC_WEATHER_API_KEY = "test-api-key";
 
 describe("useWeather Hook with Zustand", () => {
 	beforeEach(() => {
 		(fetch as jest.Mock).mockClear();
-		// Reset Zustand store before each test
 		useWeatherStore.setState({
 			data: null,
 			loading: false,
@@ -69,7 +66,6 @@ describe("useWeather Hook with Zustand", () => {
 	it("clears error when clearError is called", async () => {
 		const { result } = renderHook(() => useWeather());
 
-		// First set an error
 		await act(async () => {
 			(fetch as jest.Mock).mockRejectedValueOnce(new Error("API Error"));
 			await result.current.searchWeather("Invalid City");
@@ -79,7 +75,6 @@ describe("useWeather Hook with Zustand", () => {
 			"Cidade não encontrada ou erro na conexão"
 		);
 
-		// Then clear it
 		act(() => {
 			result.current.clearError();
 		});

@@ -12,7 +12,7 @@ export default function Home() {
 		<React.StrictMode>
 			<IntroductionCard
 				title="🌙 NocWeather: Monitoramento do Clima"
-				description="NocWeather – Beleza e precisão em qualquer tempo."
+				description="Beleza e precisão em qualquer tempo."
 			/>
 			<Datepicker className="w-52 mt-6" />
 			<DarkThemeToggle />

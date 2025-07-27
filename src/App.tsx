@@ -25,7 +25,7 @@ const App = () => {
 					<TextType
 						text={["Weather App", "Previsão do Tempo", "Clima Atual"]}
 						as="h1"
-						className="font-black text-xl p-5"
+						className="font-semibold text-4xl p-5"
 						textColors={["#22c55e", "#3b82f6", "#f59e0b"]}
 						typingSpeed={100}
 						pauseDuration={2000}
@@ -35,9 +35,10 @@ const App = () => {
 					/>
 					<TextType
 						text="Confira como está o clima na sua cidade!"
-						as="p"
-						className="text-sm font-bold"
+						as="h2"
+						className="text-2xl font-bold"
 						typingSpeed={60}
+						textColors={["#20B2AA"]}
 						initialDelay={3000}
 						loop={false}
 						showCursor={false}

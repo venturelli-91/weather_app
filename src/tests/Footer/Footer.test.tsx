@@ -23,7 +23,7 @@ describe("Footer", () => {
 		render(<Footer />);
 
 		const icons = document.querySelectorAll('svg[class*="cursor-pointer"]');
-		expect(icons).toHaveLength(2); // LinkedIn and GitHub icons
+		expect(icons).toHaveLength(2);
 	});
 
 	it("has proper footer structure", () => {
