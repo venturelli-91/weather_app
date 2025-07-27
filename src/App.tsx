@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "@/pages/_app";
-import WindPanel from "./components/WindPanel";
-import HumidityPanel from "./components/HumidityPanel";
-import TemperaturePanel from "./components/TemperaturePanel";
-import { WeatherData } from "./components/WeatherData";
+import WindPanel from "./components/Display/WindPanel";
+import HumidityPanel from "./components/Display/HumidityPanel";
+import TemperaturePanel from "./components/Display/TemperaturePanel";
+import { WeatherData } from "./components/Display/WeatherData";
 import { Card } from "flowbite-react";
 import ShinyButton from "./components/ShinyButton/ShinyButton";
-import TextType from "./components/TextType";
+import TextType from "./components/TextType/TextType";
 
 const App = () => {
 	const [data, setData] = useState<WeatherData | null>(null);
